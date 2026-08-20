@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "text": "first task",
+    "state": "finished"
+  },
+  {
+    "id": 2,
+    "text": "second task",
+    "state": "active"
+  },
+  {
+    "id": 3,
+    "text": "another task",
+    "state": "finished"
+  },
+  {
+    "id": 4,
+    "text": "Моя задача",
+    "state": "active"
+  }
+]

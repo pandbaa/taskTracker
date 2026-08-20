@@ -1,0 +1,393 @@
+/* ============================================
+   1. ГЛОБАЛЬНЫЕ СТИЛИ И СБРОС
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.col-5 {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px 35px 40px;
+  max-width: 700px;
+  min-width: 700px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+/* ============================================
+   2. ПАНЕЛЬ УПРАВЛЕНИЯ (Panel)
+   ============================================ */
+.py-3 {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.py-3 .btn {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.py-3 .btn-warning {
+  background-color: #f0ad4e;
+  color: #ffffff;
+}
+
+.py-3 .btn-warning:hover {
+  background-color: #ec971f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 173, 78, 0.35);
+}
+
+.py-3 .btn-primary {
+  background-color: #6c63ff;
+  color: #ffffff;
+}
+
+.py-3 .btn-primary:hover {
+  background-color: #5a52d5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.35);
+}
+
+/* ============================================
+   3. ФОРМА ДОБАВЛЕНИЯ (NewTaskForm)
+   ============================================ */
+.form-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #fafbfc;
+  transition: all 0.2s ease;
+  outline: none;
+  color: #1e293b;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: #6c63ff;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+}
+
+.form-group input[type="text"]::placeholder {
+  color: #94a3b8;
+}
+
+.form-inline .btn-primary {
+  background-color: #6c63ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.form-inline .btn-primary:hover {
+  background-color: #5a52d5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+}
+
+/* ============================================
+   4. ФИЛЬТРЫ (Filter)
+   ============================================ */
+.mt-3 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 0 18px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+/* ✅ Активный фильтр (span) — заметно выделяем */
+.mt-3 .fw-bold.text-primary {
+  font-weight: 600;
+  font-size: 16px;
+  color: #6c63ff;
+  background-color: rgba(108, 99, 255, 0.12);
+  padding: 6px 18px;
+  border-radius: 24px;
+  border: 2px solid #6c63ff;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.08);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+/* ✅ Неактивные фильтры (button) — как ссылки */
+.mt-3 .btn-link {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6c63ff;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none !important;
+  border-radius: 8px;
+}
+
+.mt-3 .btn-link:hover {
+  background-color: #f1f4f9;
+  color: #4a42b3;
+  text-decoration: underline;
+}
+
+/* ============================================
+   5. СПИСОК ЗАДАЧ (Tasks)
+   ============================================ */
+/* ✅ Исправлено: список занимает 100% ширины */
+.list-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ✅ Исправлено: элемент списка — на всю ширину */
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eef2f6;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+}
+
+.list-group-item:hover {
+  border-color: #d0d7e2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================
+   6. ТЕМЫ ОФОРМЛЕНИЯ (bg-light / bg-dark)
+   ============================================ */
+.list-group-item.bg-light {
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+.list-group-item.bg-light .task-body {
+  color: #1e293b;
+}
+
+.list-group-item.bg-dark {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.list-group-item.bg-dark .task-body {
+  color: #f8fafc;
+}
+
+.list-group-item.bg-dark .close {
+  color: #f8fafc;
+  opacity: 0.7;
+}
+
+.list-group-item.bg-dark .close:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   7. ТЕКСТ ЗАДАЧИ (task-body)
+   ============================================ */
+.task-body {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 450;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  word-break: break-word;
+  min-width: 120px;
+}
+
+.task-body:hover {
+  background-color: rgba(108, 99, 255, 0.06);
+}
+
+/* ============================================
+   8. СТАТУС ЗАДАЧИ (finished)
+   ============================================ */
+.badge-secondary {
+  background-color: #e2e8f0;
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+/* ============================================
+   9. КНОПКА УДАЛЕНИЯ (×)
+   ============================================ */
+.close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #94a3b8;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.close:hover {
+  color: #ef4444;
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ============================================
+   10. АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ============================================ */
+@media (max-width: 600px) {
+  .col-5 {
+    padding: 20px 18px;
+    border-radius: 12px;
+  }
+
+  .py-3 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .py-3 .btn {
+    text-align: center;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-group {
+    min-width: auto;
+  }
+
+  .form-inline .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .mt-3 {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 6px;
+  }
+
+  .mt-3 .fw-bold.text-primary,
+  .mt-3 .btn-link {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .list-group-item {
+    padding: 12px 16px;
+    width: 100%;
+  }
+
+  .task-body {
+    min-width: 80px;
+    font-size: 14px;
+  }
+
+  .badge-secondary {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .close {
+    font-size: 20px;
+  }
+}
+
+/* ============================================
+   11. АНИМАЦИЯ ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ
+   ============================================ */
+.list-group-item {
+  animation: fadeInUp 0.25s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
